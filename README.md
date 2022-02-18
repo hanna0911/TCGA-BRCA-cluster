@@ -3,7 +3,25 @@
 
 
 
-### 聚类分析病人乳腺癌的基因芯片数据（转录组）
+### 生物信息学概论 Homework2
+
+UCSC (University of California at Santa Cruz) 中的 Cancer Genome Browser (https://genome-cancer.ucsc.edu/) 平台提供了大量的肿瘤数据，尤其是包含了不同肿瘤的多层次组学数据并提供免费下载。本次作业，我们从其中下载了500多例病人乳腺癌的基因芯片数据(转录组)并已经过预处理，保存在 GeneMatrix 和 clinical_data 这两个文件中。 
+
+作业内容为：
+
+利用**R**软件或其他数据分析语言，进行该数据的聚类分析。 
+
+1. 利用层次聚类，对该组数据样本按照基因表达水平进行聚类，看聚类效果如何。即是否能够按照基因表达水平，将病人进行分类。距离可以选择average。 
+
+   注，R中有相应的聚类函数，请利用并尽可能输出图示（如heatmap），表明你的结果。 
+
+2. 实现PCA，并利用你实现的PCA对该组数据的基因表达进行降维处理。请选择你认为合适的主成分数目，给出原因，再次对病人依据你给的特征进行聚类，并与1比较。 数据文件说明:
+   1. GeneMatrix.txt：基因表达值文件，含有行名和列名，一行为一个基因，一列为一个病人 
+   2. clinical_data：记录了病人的若干信息，每一行为一个病人，病人的编号和GeneMatrix.txt中的相同。GeneMatrix中病人只涵盖了这里的一部分，注意，在病人的若干描述中，有一项为ER_Status_nature2012，可以根据这个对病人进行分类，你可以按照这个分类标准，对你的聚类进行一定的评估，看结果是否符合预期。 
+
+
+
+### Report：聚类分析病人乳腺癌的基因芯片数据（转录组）
 
 **1. 层次聚类GeneMatrix样本**
 
@@ -67,7 +85,7 @@ pca.data <- data.frame(pca$x[,1:172]) # 选取前172个主成分
 
  [pca_cumulative.pdf](Figures-PDF/pca_cumulative.pdf) 
 
-依据该172个特征，再次对病人进行聚类，聚类效果如图所示（代码与1中同理，具体可详见 [cluster.R](cluster.R) 文件）：
+依据该172个特征，再次对病人进行聚类，聚类效果如图所示（代码与1中同理，具体可详见 [cluster.R](code/cluster.R) 文件）：
 
 ![pca_cluster](Figures-PNG/pca_cluster.PNG)
 
@@ -106,7 +124,7 @@ ER_Status_nature2012$ER_Status_nature2012 <- as.numeric(ER_Status_nature2012$ER_
 ER_Status_nature2012 <- scale(ER_Status_nature2012)
 ```
 
-分类效果如图所示（代码与1中同理，具体可详见 [cluster.R](cluster.R) 文件）：
+分类效果如图所示（代码与1中同理，具体可详见 [cluster.R](code/cluster.R) 文件）：
 
 ![ER_cluster](Figures-PNG/ER_cluster.PNG)
 
