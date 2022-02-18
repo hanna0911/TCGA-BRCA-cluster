@@ -24,17 +24,17 @@ plot(fit, hang = -1, cex = 0.3) # 作图
 
 
 
-![cluster](Pictures/cluster.PNG)
+![cluster](Figures-PNG/cluster.PNG)
 
- [cluster.pdf](cluster.pdf) 
+ [cluster.pdf](Figures-PDF/cluster.pdf) 
 
 ```R
 heatmap(as.matrix(distance)) # 聚类并作图（热点图）
 ```
 
-![heatmap](Pictures/heatmap.PNG)
+![heatmap](Figures-PNG/heatmap.PNG)
 
- [heatmap.pdf](heatmap.pdf) 
+ [heatmap.pdf](Figures-PDF/heatmap.pdf) 
 
 **2. 对GeneMatrix样本进行PCA降维后再进行层次聚类**
 
@@ -50,9 +50,9 @@ pca <- prcomp(GeneMatrix, center = FALSE, scale = FALSE) # PCA主成分分析
 screeplot(pca, type = "barplot", npcs = length(pca$sdev), main = "Scree Plot", xlab = "Principal Component") # 可视化PCA后Variance数据
 ```
 
-![pca_screeplot](Pictures/pca_screeplot.PNG)
+![pca_screeplot](Figures-PNG/pca_screeplot.PNG)
 
- [pca_screeplot.pdf](pca_screeplot.pdf) 
+ [pca_screeplot.pdf](Figures-PDF/pca_screeplot.pdf) 
 
 ```R
 plot(summary(pca)$importance[3:3, 1:389], ylim = c(0.0, 1.0), xlab = "Principal Component", ylab = "Cumulative Proportion", type = "l", las = 1) # 选取PCA后Cumulative Proportion数据作图
@@ -63,23 +63,23 @@ axis(side = 1, at = c(172), labels = c("172"))
 pca.data <- data.frame(pca$x[,1:172]) # 选取前172个主成分
 ```
 
-![pca_cumulative](Pictures/pca_cumulative.PNG)
+![pca_cumulative](Figures-PNG/pca_cumulative.PNG)
 
- [pca_cumulative.pdf](pca_cumulative.pdf) 
+ [pca_cumulative.pdf](Figures-PDF/pca_cumulative.pdf) 
 
 依据该172个特征，再次对病人进行聚类，聚类效果如图所示（代码与1中同理，具体可详见 [cluster.R](cluster.R) 文件）：
 
-![pca_cluster](Pictures/pca_cluster.PNG)
+![pca_cluster](Figures-PNG/pca_cluster.PNG)
 
- [pca_cluster.pdf](pca_cluster.pdf) 
+ [pca_cluster.pdf](Figures-PDF/pca_cluster.pdf) 
 
-![pca_heatmap](Pictures/pca_heatmap.PNG)
+![pca_heatmap](Figures-PNG/pca_heatmap.PNG)
 
- [pca_heatmap.pdf](pca_heatmap.pdf) 
+ [pca_heatmap.pdf](Figures-PDF/pca_heatmap.pdf) 
 
 与1比较，可以看出聚类效果相似（左图为PCA降维前热点图，右图为PCA降维后热点图），验证了PCA的正确性，该172个主成分可以聚类该组数据。
 
-<img src="Pictures/heatmap.PNG" alt="heatmap" style="zoom: 6%;" /> <img src="Pictures/pca_heatmap.PNG" alt="pca_heatmap" style="zoom:6%;" />
+<img src="Figures-PNG/heatmap.PNG" alt="heatmap" style="zoom: 6%;" /> <img src="Figures-PNG/pca_heatmap.PNG" alt="pca_heatmap" style="zoom:6%;" />
 
 **3. 依据clinical_data中的分类标准来检验层次聚类及PCA的正确性**
 
@@ -108,17 +108,17 @@ ER_Status_nature2012 <- scale(ER_Status_nature2012)
 
 分类效果如图所示（代码与1中同理，具体可详见 [cluster.R](cluster.R) 文件）：
 
-![ER_cluster](Pictures/ER_cluster.PNG)
+![ER_cluster](Figures-PNG/ER_cluster.PNG)
 
- [ER_cluster.pdf](ER_cluster.pdf) 
+ [ER_cluster.pdf](Figures-PDF/ER_cluster.pdf) 
 
-![ER_heatmap](Pictures/ER_heatmap.PNG)
+![ER_heatmap](Figures-PNG/ER_heatmap.PNG)
 
- [ER_heatmap.pdf](ER_heatmap.pdf) 
+ [ER_heatmap.pdf](Figures-PDF/ER_heatmap.pdf) 
 
 与1、2比较，可以看出分类效果相似（从左至右依次为1、2、3的热点图），即按照这个分类标准评估1、2中的聚类，结果符合预期，验证了层次聚类及PCA的正确性。
 
-<img src="Pictures/heatmap.PNG" alt="heatmap" style="zoom: 4%;" /> <img src="Pictures/pca_heatmap.PNG" alt="pca_heatmap" style="zoom:4%;" /> <img src="Pictures/ER_heatmap.PNG" alt="ER_heatmap" style="zoom:4%;" />
+<img src="Figures-PNG/heatmap.PNG" alt="heatmap" style="zoom: 4%;" /> <img src="Figures-PNG/pca_heatmap.PNG" alt="pca_heatmap" style="zoom:4%;" /> <img src="Figures-PNG/ER_heatmap.PNG" alt="ER_heatmap" style="zoom:4%;" />
 
 
 
